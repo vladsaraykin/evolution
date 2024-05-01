@@ -1,0 +1,24 @@
+version: '3.0'
+
+services:
+  cloud-metric-exporter:
+    container_name: 'evolution'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    volumes:
+      - ./src/main/resources/application-dev.yml:/var/application-dev.yml
+    environment:
+      JAVA_OPTS: '-Dspring.config.additional-location=file:/var/application-dev.yml'
+  db:
+    container_name: 'postgres'
+    image: postgres:11.14
+    restart: always
+    environment:
+      POSTGRES_DB: evolution
+      POSTGRES_USER: evolution
+      POSTGRES_PASSWORD: evolution
+    ports:
+      - 5432:5432

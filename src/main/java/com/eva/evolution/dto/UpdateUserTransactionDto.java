@@ -13,7 +13,7 @@ import java.util.List;
 public class UpdateUserTransactionDto {
 
     @JsonProperty("apphud_id")
-    private String appHudId;
+    private String newAppHudId;
 
     @JsonProperty("transaction_ids")
     private List<String> transactionIds;

@@ -1,0 +1,13 @@
+spring:
+  application.name: evolution
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/evolution
+    username: evolution
+    password: evolution
+  flyway:
+    url: jdbc:postgresql://localhost:5432/evolution
+
+evolution:
+  host: https://my.evolution.life
+  api-secret: 'api-secret'
+  api-client: 'api-client'
