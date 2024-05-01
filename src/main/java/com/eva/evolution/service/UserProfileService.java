@@ -52,7 +52,7 @@ public class UserProfileService {
 
     public Mono<UserTransactionEntity> addTransaction(UUID userId, String transactionId) {
         return userTransactionRepository.save(UserTransactionEntity.builder()
-                        .userId(userId)
+                        .userProfileId(userId)
                         .transactionId(transactionId)
                 .build());
     }
@@ -60,11 +60,11 @@ public class UserProfileService {
     @Transactional
     public Mono<UserProfileEntity> changeUserAppHudId(UpdateUserTransactionDto updateUserTransactionDto) {
         List<String> transactionIds = updateUserTransactionDto.getTransactionIds();
-        return userTransactionRepository.findAllByTransactionId(transactionIds)
-                .map(UserTransactionEntity::getUserId)
+        return userTransactionRepository.findAllByTransactionIdIn(transactionIds)
+                .map(UserTransactionEntity::getUserProfileId)
                 .collectList()
                 .flatMap(users -> {
-                    log.error("Find more 1 user by transactions. {}", users);
+
                     if (users.size() > 2) {
                         log.error("Find more 1 user by transactions. {}", users);
                     }

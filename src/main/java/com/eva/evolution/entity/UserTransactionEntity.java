@@ -15,7 +15,7 @@ import java.util.UUID;
 public class UserTransactionEntity {
 
     private UUID id;
-    private UUID userId;
+    private UUID userProfileId;
     private String transactionId;
 
     private LocalDateTime createdAt;
